@@ -20,7 +20,7 @@
 % ?- plus_one(0, X).
 % X = s(0).
 %
-% Task 1:
+% ~~~ Task 1: ~~~
 %
 % Define a relation minus_one/2, which is true if the second argument is one
 % *less* than the first argument:
@@ -37,7 +37,7 @@
 %
 % Why do you think that happened, and is it correct?
 %
-% Task 2:
+% ~~~ Task 2: ~~~
 %
 % Write a new predicate add/3 that succeeds if all the arguments are peano
 % numbers, and the third argument is the sum of the first two arguments.
@@ -52,7 +52,7 @@
 % At the console, find the sum of s(0) and s(0). Now write a query that asks
 % what two numbers add up to s(s(s(s(s(0))))).
 
-% Task 3:
+% ~~~ Task 3: ~~~
 %
 % Write a new predicate, even/1, that succeeds if the argument is a peano
 % number representing an integer divisible by 2, e.g. 0, s(s(0)),

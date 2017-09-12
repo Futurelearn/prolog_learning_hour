@@ -5,33 +5,35 @@
 % to compute a result, a Prolog program consists of a series of *facts* and
 % *rules* that we can then query to discover the relationships between things.
 %
-% One example of a relationship we might describe is a family tree.
+% Take this example of a family tree:
 %
-% The parent/2 relation is a set of facts describing a partial family tree, as
-% shown below:
+%     +---------+               +--------+
+%     | mildred |               | horace |
+%     +---+-----+               +---+----+
+%         |                         |
+%         +------------+------------+
+%         |            |
+%     +---v---+    +---v---+        +------+
+%     |  jo   |    |  bob  |        | dave |
+%     +--+----+    +--+----+        +--+---+
+%                     |                |
+%                     +----------------+
+%                     |                |              
+%                  +--v----+        +--v--+           
+%                  |  ann  |        | ted |           
+%                  +-------+        +-----+           
 %
-% +---------+               +--------+
-% | mildred |               | horace |
-% +---+-----+               +---+----+
-%     |                         |
-%     +------------+------------+
-%     |            |
-% +---v---+    +---v---+                  +------+
-% |  jo   |    |  bob  |                  | dave |
-% +--+----+    +--+----+                  +--+---+
-%                 |                          |
-%                 +--------------------------+
-%                 |                          |
-%              +--v----+                  +--v--+
-%              |  ann  |                  | ted |
-%              +-------+                  +-----+
-%
-% The notation parent/2 gives the name of the relation, and the number of
-% things it relates, in this case 2 (the parent and child).
-%
-% Here are the facts that define the above family tree:
+% We can define a set of facts that tell us who is the parent of whom. For
+% example, to say that mildred is the parent of bob, we write:
 
 parent(mildred, bob).
+
+% In Prolog jargon, we say we've defined the parent/2 relation. "parent" is
+% the name of the relationship, and /2 tells us the number of things it
+% relates (in this case 2, the parent and child).
+%
+% Here are the rest of the facts that define the above family tree:
+
 parent(horace, bob).
 
 parent(mildred, jo).
@@ -43,8 +45,8 @@ parent(dave, ann).
 parent(bob, ted).
 parent(dave, ted).
 
-% Prolog lets us query these facts in a number of ways. We can ask it whether
-% mildred is bob's parent:
+% Prolog lets us query this relation in a number of ways. Loading up a console
+% with `make console`, we can ask it whether mildred is bob's parent:
 %
 % ?- parent(mildred, bob).
 % true .
@@ -58,27 +60,27 @@ parent(dave, ted).
 % a variable (any UppercasedWord, in this case X) as the second argument, we
 % can ask for all of bob's children.
 %
-% (Note: Prolog gives one answer at a time. Press ; after each answer to get the
-% next one.)
-%
 % ?- parent(bob, X).
 % X = ann ;
 % X = ted.
 %
-% Task 1:
+% (Note: Prolog gives one answer at a time. Press ; after each answer to get the
+% next one.)
+%
+% ~~~ Task 1: ~~~
 %
 % At the console, write a query to find out who ann's parents are. There are
 % multiple answers, so remember to press ; to get them all.
 %
-% Task 2:
+% ~~~ Task 2: ~~~
 %
 % At the console, write a query that returns all the parents in the family
 % tree (hint: you might want to use the special variable name _, which
-% represents a variable whose value you don't care about.
+% represents a variable whose value you don't care about).
 %
 % You might find some names are repeated - why do you think this is?
 %
-% Task 3:
+% ~~~ Task 3: ~~~
 %
 % Write new facts to represent dave's parents - their names are bart and
 % shelly.
@@ -90,7 +92,7 @@ parent(dave, ted).
 
 %%% Task 3 solution %%%
 
-% Task 4:
+% ~~~ Task 4: ~~~
 %
 % Write a new relation grandparent/2 that succeeds if the first argument is
 % the grandparent of the second argument.
@@ -105,7 +107,7 @@ parent(dave, ted).
 
 %%% Task 4 solution %%%
 
-% Task 5:
+% ~~~ Task 5: ~~~
 %
 % Write a new relation sibling/2 that succeeds if the two arguments have a
 % shared parent.
