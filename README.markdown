@@ -40,7 +40,8 @@ an undergraduate computer science course in a single hour. :-)
 
 Each file contains its own instructions and a number of exercises. Some
 of these will ask you to run queries at the console, which you can do
-with `make console` - this will load all code in the exercise files.
+with `make console` - this will automatically load all code in the
+exercise files so you can query your programs:
 
     $ make console
     ?- parent(mildred, bob).
@@ -52,11 +53,12 @@ Other exercises ask you to define new facts or rules, which you can
 write directly in the exercise files where indicated.
 
 There are a number of pre-written tests for these new rules, which will
-all fail to start with:
+all fail initially. Run them with:
 
     $ make test
     < lots of yelling output >
 
 To see the tests themselves, look at `test/genealogy_test.pl` and
 `test/peano_test.pl`. The test output for failures isn't very friendly -
-sorry about that. Ask questions whenever something's not clear. :-)
+rspec-style delights haven't quite found their way into Prolog just yet.
+Please ask questions freely whenever something's not clear. :-)
