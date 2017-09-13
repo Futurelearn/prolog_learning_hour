@@ -14,8 +14,14 @@ The install helper requires [homebrew](https://brew.sh/).
 
 ### Ubuntu
 
-I believe (but have not verified) that on Ubuntu systems the following
-will work instead of the `make install` step above:
+If you're using Ubuntu 17.04 or later, swi-prolog is available in the
+default repositories:
+
+    $ sudo apt-get update
+    $ sudo apt-get install swi-prolog
+
+I believe (but have not verified) that on earlier Ubuntu systems the
+following will work instead:
 
     $ sudo add-apt-repository ppa:swi-prolog/stable
     $ sudo apt-get update
