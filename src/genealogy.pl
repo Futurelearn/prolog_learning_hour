@@ -97,15 +97,22 @@ parent(dave, ted).
 % Write a new relation grandparent/2 that succeeds if the first argument is
 % the grandparent of the second argument.
 %
+% Hint: you might need to have multiple conditions in your rule body, which
+% you can do using commas:
+%
+% something_is_true :-
+%   one_thing_is_true,
+%   and_another_thing_is_true.
+
+%%% Task 4 solution %%%
+
+%%% Task 4 solution %%%
+
 % At the console, use your new predicate to answer the following questions:
 %
 % 1. who is mildred a grandparent of?
 % 2. who are bob's grandparents?
 % 3. who are all of the grandparents in the family tree?
-
-%%% Task 4 solution %%%
-
-%%% Task 4 solution %%%
 
 % ~~~ Task 5: ~~~
 %
@@ -115,14 +122,18 @@ parent(dave, ted).
 % Hint: you may need to use the `\==` operator, which is true if two things
 % are not identical. For example, `simon \== geoff` is true, while
 % `simon \== simon` is false.
-%
+
+%%% Task 5 solution %%%
+
+sibling(X, Y) :-
+  parent(Z, X),
+  parent(Z, Y).
+
+%%% Task 5 solution %%%
+
 % At the console, use your new predicate to answer the following questions:
 %
 % 1. who is the sibling of ted?
 % 2. what are all the pairs of siblings in the family tree?
-
-%%% Task 5 solution %%%
-
-%%% Task 5 solution %%%
 
 % vim: set ft=prolog:
