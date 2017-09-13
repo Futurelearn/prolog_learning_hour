@@ -1,3 +1,6 @@
+% -*- mode: Prolog;-*-
+% vim: set ft=prolog:
+
 :- [src/peano].
 
 :- begin_tests(add).
@@ -31,5 +34,3 @@ test(not_even_one, [nondet]) :-
 
 test(even_two, [nondet]) :-
   even(s(s(0))).
-
-% vim: set ft=prolog:

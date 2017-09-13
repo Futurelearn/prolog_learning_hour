@@ -1,3 +1,6 @@
+% -*- mode: Prolog;-*-
+% vim: set ft=prolog:
+%
 % Family tree
 %
 % Prolog is unlike most programming languages - it's a logic programming
@@ -135,5 +138,3 @@ sibling(X, Y) :-
 %
 % 1. who is the sibling of ted?
 % 2. what are all the pairs of siblings in the family tree?
-
-% vim: set ft=prolog:

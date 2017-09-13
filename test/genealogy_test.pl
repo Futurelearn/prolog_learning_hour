@@ -1,3 +1,6 @@
+% -*- mode: prolog;-*-
+% vim: set ft=prolog:
+
 :- [src/genealogy].
 
 :- begin_tests(parent).
@@ -46,5 +49,3 @@ test(sibling_not_self) :-
   assertion(\+ sibling(ted, ted)).
 
 :- end_tests(sibling).
-
-% vim: set ft=prolog:
