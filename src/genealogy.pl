@@ -1,14 +1,17 @@
 % -*- mode: Prolog;-*-
 % vim: set ft=prolog:
 %
-% Family tree
+% ###################
+% ### Family Tree ###
+% ###################
 %
 % Prolog is unlike most programming languages - it's a logic programming
 % language. Instead of describing a series of steps a computer must follow
 % to compute a result, a Prolog program consists of a series of *facts* and
 % *rules* that we can then query to discover the relationships between things.
 %
-% Take this example of a family tree:
+% A natural (verging on cliched) example of a relationship you can model in
+% this way is a family tree. Take this example:
 %
 %     +---------+               +--------+
 %     | mildred |               | horace |
@@ -97,8 +100,22 @@ parent(dave, ted).
 
 % ~~~ Task 4: ~~~
 %
-% Write a new relation grandparent/2 that succeeds if the first argument is
-% the grandparent of the second argument.
+% As well as facts, we can write rules - logical clauses that let us derive
+% new relationships without explicitly listing them like we did with parent/2.
+%
+% For example, we might want to know who is the grandparent of whom. We could
+% write these out exhaustively:
+%
+% grandparent(mildred, ann).
+% ...
+%
+% but this is tedious, and duplicates information already present.
+%
+% Instead let's write a rule for the relation grandparent/2, defining it in
+% terms of parent/2.
+%
+% grandparent(Grandparent, Grandchild) :-
+%   ...
 %
 % Hint: you might need to have multiple conditions in your rule body, which
 % you can do using commas:

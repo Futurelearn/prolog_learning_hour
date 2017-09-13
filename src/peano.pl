@@ -1,7 +1,9 @@
 % -*- mode: prolog;-*-
 % vim: set ft=prolog:
 %
-% Peano numbers
+% #####################
+% ### Peano numbers ###
+% #####################
 %
 % The Peano numbers are a way of representing the natural numbers 0,1,2...  n.
 %

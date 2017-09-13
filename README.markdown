@@ -27,6 +27,22 @@ following will work instead:
     $ sudo apt-get update
     $ sudo apt-get install swi-prolog
 
+## Editors
+
+Prolog files use a `.pl` extension. Unfortunately this is also used by
+Perl, so by default your editor will probably try to highlight the
+exercise code as Perl. Prolog was first, though, by some 15 years. Get
+off my lawn.
+
+To get proper syntax highlighting, here are some plugins for different
+editors:
+
+* [Atom](https://atom.io/packages/language-prolog)
+* [Sublime Text 2 & 3](https://github.com/alnkpa/sublimeprolog)
+
+Vim and emacs should work just fine because, naturally, these editors
+ship by default with syntax for all of the 70s languages.
+
 ## Usage
 
 There are two sets of exercises:
