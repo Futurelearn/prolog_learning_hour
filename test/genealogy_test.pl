@@ -5,35 +5,26 @@
 
 :- begin_tests(parent).
 
-test(parent_bart_dave) :-
-  assertion(parent(bart, dave)).
+test(bart_is_the_parent_of_dave, [nondet]) :-
+  parent(bart, dave).
 
-test(parent_shelly_dave) :-
-  assertion(parent(shelly, dave)).
+test(shelly_is_the_parent_of_dave, [nondet]) :-
+  parent(shelly, dave).
 
 :- end_tests(parent).
 
 :- begin_tests(grandparent).
 
-test(grandparent_horace_ann, [nondet]) :-
-  assertion(grandparent(horace, ann)).
+test(horace_is_the_grandparent_of_ann, [nondet]) :-
+  grandparent(horace, ann).
 
 test(all_grandparents, [nondet]) :-
   setof(X, Y^grandparent(X, Y), Xs),
   assertion(Xs == [bart, horace, mildred, shelly]).
 
-test(all_grand_parents_and_grandchildren) :-
-  setof([X, Y], grandparent(X, Y), XYs),
-  assertion(XYs == [
-    [bart, ann],
-    [bart, ted],
-    [horace, ann],
-    [horace, ted],
-    [mildred, ann],
-    [mildred, ted],
-    [shelly, ann],
-    [shelly, ted]
-  ]).
+test(all_grandchildren) :-
+  setof(Y, X^grandparent(X, Y), Ys),
+  assertion(Ys == [ann, ted]).
 
 :- end_tests(grandparent).
 

@@ -5,79 +5,61 @@
 % ### Family Tree ###
 % ###################
 %
-% Prolog is unlike most programming languages - it's a logic programming
-% language. Instead of describing a series of steps a computer must follow
-% to compute a result, a Prolog program consists of a series of *facts* and
-% *rules* that we can then query to discover the relationships between things.
+% We've seen some simple examples of facts and rules that we used to describe
+% properties of things (mostly whether they were cheeses) and a simple
+% relationship between things (whether thing A likes thing B).
 %
-% A natural (verging on cliched) example of a relationship you can model in
-% this way is a family tree. Take this example:
+% Let's look at a more complex set of relationships: a family tree.
 %
-%     +---------+               +--------+
-%     | mildred |               | horace |
-%     +---+-----+               +---+----+
-%         |                         |
-%         +------------+------------+
-%         |            |
-%     +---v---+    +---v---+        +------+
-%     |  jo   |    |  bob  |        | dave |
-%     +--+----+    +--+----+        +--+---+
-%                     |                |
-%                     +----------------+
-%                     |                |              
-%                  +--v----+        +--v--+           
-%                  |  ann  |        | ted |           
-%                  +-------+        +-----+           
+% Here's a partial family tree that we can represent in Prolog:
+%
+%     +---------+               +--------+  +------+   +--------+
+%     | mildred |               | horace |  | bart |   | shelly |
+%     +---+-----+               +---+----+  +--+---+   +---+----+
+%         |                         |          |           |
+%         +------------+------------+          +-----------+
+%         |            |                       |
+%     +---v---+    +---v---+                +--v---+
+%     |  jo   |    |  bob  |                | dave |
+%     +--+----+    +--+----+                +--+---+
+%                     |                        |
+%                     +------------------------+
+%                     |                        |              
+%                 +---v---+                 +--v--+
+%                 |  ann  |                 | ted |
+%                 +-------+                 +-----+
 %
 % We can define a set of facts that tell us who is the parent of whom. For
 % example, to say that mildred is the parent of bob, we write:
 
 parent(mildred, bob).
 
-% In Prolog jargon, we say we've defined the parent/2 relation. "parent" is
-% the name of the relationship, and /2 tells us the number of things it
-% relates (in this case 2, the parent and child).
-%
-% Here are the rest of the facts that define the above family tree:
-
-parent(horace, bob).
-
-parent(mildred, jo).
-parent(horace, jo).
-
-parent(bob, ann).
-parent(dave, ann).
-
-parent(bob, ted).
-parent(dave, ted).
-
-% Prolog lets us query this relation in a number of ways. Loading up a console
-% with `make console`, we can ask it whether mildred is bob's parent:
-%
-% ?- parent(mildred, bob).
-% true .
-%
-% And we can ask it whether mildred is their own parent:
-%
-% ?- parent(mildred, mildred).
-% false.
-%
-% We don't have to provide exact names like mildred or bob, though. By passing
-% a variable (any UppercasedWord, in this case X) as the second argument, we
-% can ask for all of bob's children.
-%
-% ?- parent(bob, X).
-% X = ann ;
-% X = ted.
-%
-% (Note: Prolog gives one answer at a time. Press ; after each answer to get the
-% next one.)
+% Here, we're defining the "parent" relation (in Prolog jargon we call it
+% parent/2 because it takes two arguments, the parent and child).
 %
 % ~~~ Task 1: ~~~
 %
-% At the console, write a query to find out who ann's parents are. There are
-% multiple answers, so remember to press ; to get them all.
+% Add the facts that represent the rest of the family tree:
+
+%%% Task 1 solution %%%
+
+%%% Task 1 solution %%%
+
+% As with our likes cheese program, we can query this relation in a number of
+% ways.
 %
+% ~~~ Task 2: ~~~
+%
+% Load the console with `make console`, and run queries to answer the
+% questions:
+%
+% 1. Is dave ted's parent?
+% 2. Who are all of ann's parents?
+% 3. Who are mildred's children?
+%
+% Remember, if there are multiple answers, press ; to get them all.
+
+
 % ~~~ Task 2: ~~~
 %
 % At the console, write a query that returns all the parents in the family
@@ -85,59 +67,46 @@ parent(dave, ted).
 % represents a variable whose value you don't care about).
 %
 % You might find some names are repeated - why do you think this is?
-%
+
+
 % ~~~ Task 3: ~~~
 %
-% Write new facts to represent dave's parents - their names are bart and
-% shelly.
+% Now we know who is the parent of whom, we can write a new relation
+% grandparent/2, which is true when the first argument is the grandparent of
+% the second argument. For example, the following query should succeed:
 %
-% Once you've written your facts, you can check them by running `make test` at
-% the command line.
-
-%%% Task 3 solution %%%
-
-%%% Task 3 solution %%%
-
-% ~~~ Task 4: ~~~
+%     ?- grandparent(mildred, ann).
+%     true.
 %
-% As well as facts, we can write rules - logical clauses that let us derive
-% new relationships without explicitly listing them like we did with parent/2.
-%
-% For example, we might want to know who is the grandparent of whom. We could
-% write these out exhaustively:
-%
-% grandparent(mildred, ann).
-% ...
-%
-% but this is tedious, and duplicates information already present.
-%
-% Instead let's write a rule for the relation grandparent/2, defining it in
-% terms of parent/2.
-%
-% grandparent(Grandparent, Grandchild) :-
-%   ...
+% Write a single rule that defines the grandparent/2 relation. Again, you can
+% test your rule at the console (use `reload.` to load your changes), or run
+% `make test` at a bash terminal to check your answer.
 %
 % Hint: you might need to have multiple conditions in your rule body, which
 % you can do using commas:
 %
-% something_is_true :-
-%   one_thing_is_true,
-%   and_another_thing_is_true.
+%     something_is_true :-
+%       one_thing_is_true,
+%       and_another_thing_is_true.
 
-%%% Task 4 solution %%%
+%%% Task 3 solution %%%
 
-%%% Task 4 solution %%%
+%%% Task 3 solution %%%
 
+
+% ~~~ Task 4: ~~~
+%
 % At the console, use your new predicate to answer the following questions:
 %
 % 1. who is mildred a grandparent of?
 % 2. who are bob's grandparents?
 % 3. who are all of the grandparents in the family tree?
 
+
 % ~~~ Task 5: ~~~
 %
-% Write a new relation sibling/2 that succeeds if the two arguments have a
-% shared parent.
+% Write a new rule sibling/2 that succeeds if the two arguments have a shared
+% parent. As before, you'll need multiple conditions in the body of your rule.
 %
 % Hint: you may need to use the `\==` operator, which is true if two things
 % are not identical. For example, `simon \== geoff` is true, while
@@ -145,12 +114,11 @@ parent(dave, ted).
 
 %%% Task 5 solution %%%
 
-sibling(X, Y) :-
-  parent(Z, X),
-  parent(Z, Y).
-
 %%% Task 5 solution %%%
 
+
+% ~~~ Task 6: ~~~
+%
 % At the console, use your new predicate to answer the following questions:
 %
 % 1. who is the sibling of ted?
