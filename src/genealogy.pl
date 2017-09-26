@@ -54,21 +54,21 @@ parent(dave, ted).
 % Prolog lets us query this relation in a number of ways. Loading up a console
 % with `make console`, we can ask it whether mildred is bob's parent:
 %
-% ?- parent(mildred, bob).
-% true .
+%     ?- parent(mildred, bob).
+%     true .
 %
 % And we can ask it whether mildred is their own parent:
 %
-% ?- parent(mildred, mildred).
-% false.
+%     ?- parent(mildred, mildred).
+%     false.
 %
 % We don't have to provide exact names like mildred or bob, though. By passing
 % a variable (any UppercasedWord, in this case X) as the second argument, we
 % can ask for all of bob's children.
 %
-% ?- parent(bob, X).
-% X = ann ;
-% X = ted.
+%     ?- parent(bob, X).
+%     X = ann ;
+%     X = ted.
 %
 % (Note: Prolog gives one answer at a time. Press ; after each answer to get the
 % next one.)
@@ -106,23 +106,23 @@ parent(dave, ted).
 % For example, we might want to know who is the grandparent of whom. We could
 % write these out exhaustively:
 %
-% grandparent(mildred, ann).
-% ...
+%     grandparent(mildred, ann).
+%     ...
 %
 % but this is tedious, and duplicates information already present.
 %
 % Instead let's write a rule for the relation grandparent/2, defining it in
 % terms of parent/2.
 %
-% grandparent(Grandparent, Grandchild) :-
-%   ...
+%     grandparent(Grandparent, Grandchild) :-
+%       ...
 %
 % Hint: you might need to have multiple conditions in your rule body, which
 % you can do using commas:
 %
-% something_is_true :-
-%   one_thing_is_true,
-%   and_another_thing_is_true.
+%     something_is_true :-
+%       one_thing_is_true,
+%       and_another_thing_is_true.
 
 %%% Task 4 solution %%%
 
