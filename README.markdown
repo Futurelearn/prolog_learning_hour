@@ -1,16 +1,22 @@
 # Prolog Learning Hour
 
 These are some exercises that introduce some of Prolog's core concepts.
-
-## Installation
-
-### OSX
-
-The install helper requires [homebrew](https://brew.sh/).
+Get started by cloning the repo:
 
     $ git clone git@github.com:Futurelearn/prolog_learning_hour.git
     $ cd prolog_learning_hour
-    $ make install
+
+## Installation
+
+There are many different Prolog implementations - the exercises require
+one called [SWI-Prolog](http://www.swi-prolog.org/).
+
+### OSX
+
+For Macs, assuming you've got [homebrew](https://brew.sh/) already
+installed:
+
+    $ brew install swi-prolog
 
 ### Ubuntu
 
