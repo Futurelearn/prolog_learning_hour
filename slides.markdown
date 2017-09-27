@@ -5,6 +5,8 @@ theme: Next, 5
 
 # [fit] Prolog
 
+^ Thanks for coming along to a learning hour I've wanted to do since, well, since I learned we do learning hours
+
 ---
 
 # [fit] A logic
@@ -13,45 +15,24 @@ theme: Next, 5
 
 ---
 
-![original](images/pink.png)
-
-# Most
-# programming
-
----
+[.build-lists: true]
 
 # Most Programming
 
-* Series of steps for computer to follow
-  * "store the number 4 in this variable"
-  * "multiply it by 17"
-  * "create an instance of class `User`"
-  * "print the result to the screen"
+Series of steps for computer to follow
+
+* "store the number 4 in this variable"
+* "multiply it by 17"
+* "create an instance of class `User`"
+* "print the result to the screen"
 
 ---
 
-# Prolog Programming
-
-* ???
-
----
+[.build-lists: true]
 
 # Prolog Programming
 
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
-
----
-
-# Prolog Programming
-
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
-* **rules** ("Simon likes all cheeses")
-
----
-
-# Prolog Programming
-
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+* **facts** ("Brie is a cheese", "Gorgonzola is a cheese", "Simon likes Prolog")
 * **rules** ("Simon likes all cheeses")
 * **queries** ("Does Simon like brie?", "What does Simon like?")
 
@@ -65,28 +46,28 @@ theme: Next, 5
 
 # Facts
 
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+* "Brie is a cheese", "Gorgonzola is a cheese", "Simon likes Prolog"
 
 ---
 
 # Facts
 
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+* "Brie is a cheese", "Gorgonzola is a cheese", "Simon likes Prolog"
 
 ```prolog
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
 ```
 
 ---
 
 # Facts
 
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+* "Brie is a cheese", "Gorgonzola is a cheese", "Simon likes Prolog"
 
 ```prolog
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
 likes(simon, prolog).
 ```
 
@@ -98,36 +79,27 @@ likes(simon, prolog).
 
 ---
 
-# Prolog Programming
+# Rules
 
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+* "Simon likes all cheeses"
 
-```prolog
-likes(simon, prolog).
-cheese(brie).
-cheese(reblochon).
-```
+---
 
-* **rules** ("Simon likes all cheeses")
+# Rules
+
+* "Simon likes all cheeses"
 
 ```prolog
 likes(simon, brie).
-likes(simon, reblochon).
+likes(simon, gorgonzola).
+% ...
 ```
 
 ---
 
-# Prolog Programming
+# Rules
 
-* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
-
-```prolog
-likes(simon, prolog).
-cheese(brie).
-cheese(reblochon).
-```
-
-* **rules** ("Simon likes all cheeses")
+* "Simon likes all cheeses"
 
 ```prolog
 likes(simon, X) :- cheese(X).
@@ -141,12 +113,12 @@ likes(simon, X) :- cheese(X).
 
 ---
 
-# Querying Prolog
+# Queries
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
 ?- 
@@ -154,12 +126,128 @@ likes(simon, X) :- cheese(X).
 
 ---
 
-# Querying Prolog
+# Queries
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- cheese(gorgonzola).
+```
+
+---
+
+# Queries
+
+```prolog
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- cheese(gorgonzola).
+true.
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(gorgonzola)`
+
+```prolog
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- cheese(gorgonzola).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(gorgonzola)`
+
+```prolog, [.highlight: 1-2, 6-7]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- cheese(gorgonzola).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(gorgonzola)`
+
+```prolog, [.highlight: 1, 6-7]
+cheese(brie). ✘ brie != gorgonzola
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- cheese(gorgonzola).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(gorgonzola)`
+
+```prolog, [.highlight: 2, 6-7]
+cheese(brie).
+cheese(gorgonzola). ✔ perfect match!
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- cheese(gorgonzola).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(gorgonzola)`
+
+```prolog, [.highlight: 2, 6-7]
+cheese(brie).
+cheese(gorgonzola). ✔ perfect match!
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- cheese(gorgonzola).
+true.
+```
+
+---
+
+# Queries
+
+```prolog
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?-
+```
+
+---
+
+# Queries
+
+```prolog
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
 ?- likes(simon, brie).
@@ -167,12 +255,12 @@ likes(simon, X) :- cheese(X).
 
 ---
 
-# Querying Prolog
+# Queries
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
 ?- likes(simon, brie).
@@ -181,39 +269,133 @@ true.
 
 ---
 
-# Querying Prolog
+# Queries
+
+* **Current goal:** `likes(simon, brie)`
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
-?- likes(simon, cucumbers).
+?- likes(simon, brie).
 ```
 
 ---
 
-# Querying Prolog
+# Queries
 
-```prolog
-likes(simon, prolog).
+* **Current goal:** `likes(simon, brie)`
+
+```prolog, [.highlight: 3-4, 6-7]
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
-?- likes(simon, cucumbers).
-false.
+?- likes(simon, brie).
 ```
 
 ---
 
-# Querying Prolog
+# Queries
+
+* **Current goal:** `likes(simon, brie)`
+
+```prolog, [.highlight: 3, 6-7]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog). ✘ prolog != brie
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, brie).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `likes(simon, brie)`
+
+```prolog, [.highlight: 4, 6-7]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X). ✔ X = brie
+
+?- likes(simon, brie).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(brie)`
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, brie).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(brie)`
+
+```prolog, [.highlight: 1-2, 6-7]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, brie).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(brie)`
+
+```prolog, [.highlight: 1, 6-7]
+cheese(brie). ✔ perfect match!
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, brie).
+```
+
+---
+
+# Queries
+
+* **Current goal:** `cheese(brie)`
+
+```prolog, [.highlight: 1, 6-7]
+cheese(brie). ✔ perfect match!
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, brie).
+true.
+```
+
+---
+
+# Queries
+
+```prolog
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
 ?- likes(simon, Y).
@@ -221,12 +403,12 @@ likes(simon, X) :- cheese(X).
 
 ---
 
-# Querying Prolog
+# Queries
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
 ?- likes(simon, Y).
@@ -235,42 +417,198 @@ Y = prolog
 
 ---
 
-# Querying Prolog
+# Queries
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
 ?- likes(simon, Y).
 Y = prolog ;
-Y = brie.
+Y = brie
 ```
 
 ---
 
-# "Closed-world assumption"
+# Queries
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
-?- likes(simon, manchego).
+?- likes(simon, Y).
+Y = prolog ;
+Y = brie ;
+Y = gorgonzola.
 ```
 
 ---
 
-# "Closed-world assumption"
+# Queries
+
+**Current goal:** `likes(simon, Y)`
 
 ```prolog
-likes(simon, prolog).
 cheese(brie).
-cheese(reblochon).
+cheese(gorgonzola).
+likes(simon, prolog).
 likes(simon, X) :- cheese(X).
 
-?- likes(simon, manchego).
-false.
+?- likes(simon, Y).
 ```
+
+---
+
+# Queries
+
+**Current goal:** `likes(simon, Y)`
+
+```prolog, [.highlight: 3-4, 6-10]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, Y).
+```
+
+---
+
+# Queries
+
+**Current goal:** `likes(simon, Y)`
+
+```prolog, [.highlight: 3, 6-10]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog). ✔ Y = prolog
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, Y).
+```
+
+---
+
+# Queries
+
+**Current goal:** `likes(simon, Y)`
+
+```prolog, [.highlight: 3, 6-10]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog). ✔ Y = prolog
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, Y).
+Y = prolog
+```
+
+---
+
+# Queries
+
+**Current goal:** `likes(simon, Y)`
+
+```prolog, [.highlight: 3, 6-10]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog). ✔ Y = prolog
+likes(simon, X) :- cheese(X).
+
+?- likes(simon, Y).
+Y = prolog ;
+```
+
+---
+
+# Queries
+
+**Current goal:** `likes(simon, Y)`
+
+```prolog, [.highlight: 4, 6-10]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X). ✔ X = Y.
+
+?- likes(simon, Y).
+Y = prolog ;
+```
+
+---
+
+# Queries
+
+**Current goal:** `cheese(Y)`
+
+```prolog, [.highlight: 1-2, 6-10]
+cheese(brie).
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X)
+
+?- likes(simon, Y).
+Y = prolog ;
+```
+
+---
+
+# Queries
+
+**Current goal:** `cheese(Y)`
+
+```prolog, [.highlight: 1, 6-10]
+cheese(brie). ✔ Y = brie
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X)
+
+?- likes(simon, Y).
+Y = prolog ;
+Y = brie
+```
+
+---
+
+# Queries
+
+**Current goal:** `cheese(Y)`
+
+```prolog, [.highlight: 1, 6-10]
+cheese(brie). ✔ Y = brie
+cheese(gorgonzola).
+likes(simon, prolog).
+likes(simon, X) :- cheese(X)
+
+?- likes(simon, Y).
+Y = prolog ;
+Y = brie ;
+```
+
+---
+
+# Queries
+
+**Current goal:** `cheese(Y)`
+
+```prolog, [.highlight: 2, 6-10]
+cheese(brie).
+cheese(gorgonzola). ✔ Y = gorgonzola
+likes(simon, prolog).
+likes(simon, X) :- cheese(X)
+
+?- likes(simon, Y).
+Y = prolog ;
+Y = brie ;
+Y = gorgonzola.
+```
+
+---
+
+![original](images/pink.png)
+
+# [fit] To the laptops!
