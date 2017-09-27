@@ -5,13 +5,11 @@
 % ### Family Tree ###
 % ###################
 %
-% Prolog is unlike most programming languages - it's a logic programming
-% language. Instead of describing a series of steps a computer must follow
-% to compute a result, a Prolog program consists of a series of *facts* and
-% *rules* that we can then query to discover the relationships between things.
+% A Prolog program consists of a series of facts and rules that we can
+% then query to discover the relationships between things.
 %
-% A natural (verging on cliched) example of a relationship you can model in
-% this way is a family tree. Take this example:
+% A natural example of a relationship you can model in this way is a family
+% tree. Take this example:
 %
 %     +---------+               +--------+
 %     | mildred |               | horace |
@@ -25,9 +23,9 @@
 %                     |                |
 %                     +----------------+
 %                     |                |              
-%                  +--v----+        +--v--+           
-%                  |  ann  |        | ted |           
-%                  +-------+        +-----+           
+%                 +---v---+         +--v--+
+%                 |  ann  |         | ted |
+%                 +-------+         +-----+
 %
 % We can define a set of facts that tell us who is the parent of whom. For
 % example, to say that mildred is the parent of bob, we write:
@@ -144,10 +142,6 @@ parent(dave, ted).
 % `simon \== simon` is false.
 
 %%% Task 5 solution %%%
-
-sibling(X, Y) :-
-  parent(Z, X),
-  parent(Z, Y).
 
 %%% Task 5 solution %%%
 
