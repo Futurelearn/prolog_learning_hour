@@ -1,26 +1,22 @@
 theme: Next, 5
 <!-- vim: set textwidth=0 backupcopy=yes foldlevel=99: -->
 
-# Prolog
+![original](images/pink.png)
+
+# [fit] Prolog
 
 ---
 
-# A logic programming language
+# [fit] A logic
+# [fit] programming
+# [fit] language
 
 ---
 
-# Most Programming
+![original](images/pink.png)
 
-* Series of steps for computer to follow
-
----
-
-# Most Programming
-
-* Series of steps for computer to follow
-  * "store the number 4 in this variable"
-  * "multiply it by 17"
-  * "print the result to the screen"
+# Most
+# programming
 
 ---
 
@@ -29,67 +25,119 @@ theme: Next, 5
 * Series of steps for computer to follow
   * "store the number 4 in this variable"
   * "multiply it by 17"
+  * "create an instance of class `User`"
   * "print the result to the screen"
 
-# a.k.a. "imperative programming"
+---
+
+# Prolog Programming
+
+* ???
 
 ---
 
 # Prolog Programming
 
-* ~~Series of steps for computer to follow~~
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
 
 ---
 
 # Prolog Programming
 
-* ~~Series of steps for computer to follow~~
-* **facts** ("Simon likes Prolog", "Brie is a cheese")
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+* **rules** ("Simon likes all cheeses")
 
 ---
 
 # Prolog Programming
 
-* ~~Series of steps for computer to follow~~
-* **facts** ("Simon likes Prolog", "Brie is a cheese")
-* **rules** ("Simon likes X if X is a cheese")
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+* **rules** ("Simon likes all cheeses")
+* **queries** ("Does Simon like brie?", "What does Simon like?")
+
+---
+
+![original](images/pink.png)
+
+# [fit] Facts
+
+---
+
+# Facts
+
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+
+---
+
+# Facts
+
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+
+```prolog
+cheese(brie).
+cheese(reblochon).
+```
+
+---
+
+# Facts
+
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+
+```prolog
+cheese(brie).
+cheese(reblochon).
+likes(simon, prolog).
+```
+
+---
+
+![original](images/pink.png)
+
+# [fit] Rules
 
 ---
 
 # Prolog Programming
 
-* ~~Series of steps for computer to follow~~
-* **facts** ("Simon likes Prolog", "Brie is a cheese")
-* **rules** ("Simon likes X if X is a cheese")
-* **queries** ("Does Simon like brie?")
-
----
-
-# Prolog Programming
-
-* ~~Series of steps for computer to follow~~
-* **facts** ("Simon likes Prolog", "Brie is a cheese")
-* **rules** ("Simon likes X if X is a cheese")
-* **queries** ("Does Simon like brie?")
-
-# a.k.a. "declarative programming"
-
----
-
-# Prolog Programming
-
-* **facts**
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
+cheese(brie).
+cheese(reblochon).
 ```
 
-* **rules**
+* **rules** ("Simon likes all cheeses")
 
 ```prolog
-likes(simon, X) :- is_a_cheese(X).
+likes(simon, brie).
+likes(simon, reblochon).
 ```
+
+---
+
+# Prolog Programming
+
+* **facts** ("Brie is a cheese", "Reblochon is a cheese", "Simon likes Prolog")
+
+```prolog
+likes(simon, prolog).
+cheese(brie).
+cheese(reblochon).
+```
+
+* **rules** ("Simon likes all cheeses")
+
+```prolog
+likes(simon, X) :- cheese(X).
+```
+
+---
+
+![original](images/pink.png)
+
+# [fit] Queries
 
 ---
 
@@ -97,8 +145,9 @@ likes(simon, X) :- is_a_cheese(X).
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- 
 ```
@@ -109,8 +158,9 @@ likes(simon, X) :- is_a_cheese(X).
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, brie).
 ```
@@ -121,8 +171,9 @@ likes(simon, X) :- is_a_cheese(X).
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, brie).
 true.
@@ -134,8 +185,9 @@ true.
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, cucumbers).
 ```
@@ -146,8 +198,9 @@ likes(simon, X) :- is_a_cheese(X).
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, cucumbers).
 false.
@@ -159,8 +212,9 @@ false.
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, Y).
 ```
@@ -171,8 +225,9 @@ likes(simon, X) :- is_a_cheese(X).
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, Y).
 Y = prolog
@@ -184,8 +239,9 @@ Y = prolog
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, Y).
 Y = prolog ;
@@ -198,8 +254,9 @@ Y = brie.
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, manchego).
 ```
@@ -210,8 +267,9 @@ likes(simon, X) :- is_a_cheese(X).
 
 ```prolog
 likes(simon, prolog).
-is_a_cheese(brie).
-likes(simon, X) :- is_a_cheese(X).
+cheese(brie).
+cheese(reblochon).
+likes(simon, X) :- cheese(X).
 
 ?- likes(simon, manchego).
 false.
