@@ -55,6 +55,12 @@ plus_one(X, s(X)).
 
 %%% Task 1 Solution %%%
 
+minus_one(s(X), X).
+
+% Alternatively we could write:
+%
+% minus_one(X, Y) :- plus_one(Y, X).
+
 %%% Task 1 Solution %%%
 
 % At the console, find out what's one less than s(s(0)).
@@ -70,6 +76,16 @@ plus_one(X, s(X)).
 % We've written two predicates, but they're very similar. Can you write a
 % query at the console using the plus_one/2 predicate that gives you the
 % answer to 3 - 1?
+%
+% Answer:
+%
+%     ?- plus_one(X, s(s(s(0)))).
+%     X = s(s(0)).
+%
+% This demonstrates that we didn't really have to write a second minus_one
+% predicate - the plus_one predicate defines the relationship between two
+% things, one of which is one more than the other. Depending on how we query
+% it, it can be used for both addition and subtraction!
 
 
 % Our plus_one/2 predicate will take any X and wrap it in s(). This means if
@@ -130,6 +146,11 @@ peano_number(s(X)) :- peano_number(X).
 % Modify the plus_one/2 and minus_one/2 rules so that they only perform
 % addition on valid peano numbers.
 %
+% Answer: (commented out to avoid spoilers above)
+%
+% plus_one(X, s(X)) :- peano_number(X).
+% minus_one(s(X), X) :- peano_number(X).
+% 
 % At the console, reload your code and verify that adding one to fish no
 % longer works:
 %
@@ -158,6 +179,19 @@ peano_number(s(X)) :- peano_number(X).
 
 %%% Task 4 Solution %%%
 
+% A useful base case is adding zero to something. X + 0 is always equal to X,
+% so we can write that fact directly:
+
+add(X, 0, X).
+
+% Now we need a recursive case, one that takes any input, and moves us one
+% step closer to our base case:
+
+add(X, s(Y), s(Z)) :- add(X, Y, Z).
+
+% This can be a bit hard to think about. If we know that X + Y = Z, then we
+% also know that X + (Y+1) = (Z+1).
+
 %%% Task 4 Solution %%%
 
 
@@ -167,12 +201,14 @@ peano_number(s(X)) :- peano_number(X).
 %
 % 1. "what's one plus one?"
 % 2. "what are all the pairs of numbers that add up to 5?"
+%
+% Answers:
+%
+% 1. ?- add(s(0), s(0), X).
+% 2. ?- add(X, Y, s(s(s(s(s(0)))))).
 
 
 % ~~~ Task 6: ~~~
-%
-% Now we've done some arithmetic, let's look at a property of integers -
-% whether they're even.
 %
 % Write a new predicate, even/1, that succeeds if the argument is a peano
 % number representing an integer divisible by 2, e.g. 0, s(s(0)),
@@ -188,5 +224,54 @@ peano_number(s(X)) :- peano_number(X).
 % This alternative solution is my favourite computer program ever. :-)
 
 %%% Task 6 Solution %%%
+
+% Here's the recursive solution. Our base case again involves zero - zero is
+% even, so we can state that as a fact.
+
+even(0).
+
+% Our recursive case works similarly to before - this time we're saying "if we
+% know X is even, then X + 2 must also be even".
+
+even(s(s(X)) :- even(X).
+
+% The alternative solution is, as mentioned, my favourite prolog program:
+
+even_alt(X) :- add(Y, Y, X).
+
+% I still find it mind-bending that this works. It says "X is even if there
+% exists another number, Y, which, added to itself, equals X".
+%
+% Another way of stating this is "X is even if we can find an integer that is
+% exactly half of X."
+%
+% We never taught prolog how to do division, though! We just told it the
+% meaning of adding two things together.
+%
+% Earlier, though, we wrote a query that asked "what are all the pairs of
+% numbers that add up to 5?". Prolog was able to generate all of the pairs:
+%
+% 0 + 5
+% 1 + 4
+% 2 + 3
+% 3 + 2
+% 4 + 1
+% 5 + 0
+%
+% And it does the same thing here, with the additional check that the two
+% numbers have to be the same.
+%
+% So for 5, because none of the pairs are equal, 5 must not be even. For 4,
+% however, we get the following list of possibilities:
+%
+% 0 + 4
+% 1 + 3
+% 2 + 2
+% 3 + 1
+% 4 + 0
+%
+% And this time, because 2 and 2 are the same, Prolog deduces that 4 is even.
+%
+% As far as I'm concerned this is basically magic. :-)
 
 %%% Task 6 Solution %%%

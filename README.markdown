@@ -51,14 +51,15 @@ ship by default with syntax for all of the 70s languages.
 
 ## Usage
 
-There are two sets of exercises:
+There are three sets of exercises:
 
-* Family tree - `src/genealogy.pl`
-* Peano numbers - `src/peano.pl`
+1. Facts, rules and queries - `src/facts_rules_and_queries.pl`
+2. Family tree - `src/genealogy.pl`
+3. Peano numbers - `src/peano.pl`
 
-Start with the family tree exercises and move on to the Peano numbers if
-there's time. Don't worry if not! I'm trying to cram about four weeks of
-an undergraduate computer science course in a single hour. :-)
+Work through them in order - but don't worry if you don't have time to
+finish! I've tried to make sure there's more than enough to be getting
+on with.
 
 Each file contains its own instructions and a number of exercises. Some
 of these will ask you to run queries at the console, which you can do
@@ -72,12 +73,21 @@ exercise files so you can query your programs:
     ?-
 
 Other exercises ask you to define new facts or rules, which you can
-write directly in the exercise files where indicated.
+write directly in the exercise files where indicated. If you want to try
+out your changes at the console, you can reload your code like so:
 
-There are a number of pre-written tests for these new rules, which will
-all fail initially. Run them with:
+    ?- reload.
+    true.
 
-    $ make test
+    ?- 
+
+For the genealogy and peano exercises, there are some pre-written tests,
+which you can run from the command line:
+
+    $ make genealogy
+    < lots of yelling output >
+
+    $ make peano
     < lots of yelling output >
 
 To see the tests themselves, look at `test/genealogy_test.pl` and

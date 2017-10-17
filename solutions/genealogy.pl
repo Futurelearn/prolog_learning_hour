@@ -176,7 +176,7 @@ sibling(X, Y) :-
 % We see even more duplicates in the sibling(X, Y) query. For example, we get
 % the pair (jo, bob) twice, and (bob, jo) twice, too.
 %
-% The rule we wrote can be satisfied in lots of ways:
+% The rule we wrote can be satisfied in lots of ways for jo and bob:
 %
 % sibling(X, Y) :-
 %   parent(Z, X), % parent(mildred, bob)
