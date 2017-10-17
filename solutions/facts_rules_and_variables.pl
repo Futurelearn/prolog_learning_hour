@@ -179,4 +179,9 @@ likes(audrey, X) :- city(X).
 % questions:
 %
 % 1. Who likes London?
-% 2. 
+% 2. What does Audrey like?
+%
+% Answers:
+%
+% 1. ?- likes(X, london).
+% 2. ?- likes(audrey, X).

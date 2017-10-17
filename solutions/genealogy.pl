@@ -43,6 +43,16 @@ parent(mildred, bob).
 
 %%% Task 1 solution %%%
 
+parent(mildred, jo).
+parent(horace, bob).
+parent(horace, jo).
+parent(bart, dave).
+parent(shelly, dave).
+parent(bob, ann).
+parent(bob, ted).
+parent(dave, ann).
+parent(dave, ted).
+
 %%% Task 1 solution %%%
 
 % As with our likes cheese program, we can query this relation in a number of
@@ -58,6 +68,12 @@ parent(mildred, bob).
 % 3. Who are mildred's children?
 %
 % Remember, if there are multiple answers, press ; to get them all.
+%
+% Answers:
+%
+% 1. ?- parent(dave, ted).
+% 2. ?- parent(X, ann).
+% 3. ?- parent(mildred, X).
 
 
 % ~~~ Task 2: ~~~
@@ -67,6 +83,16 @@ parent(mildred, bob).
 % represents a variable whose value you don't care about).
 %
 % You might find some names are repeated - why do you think this is?
+%
+% Answer:
+%
+% ?- parent(Y, _).
+%
+% This repeats answers - the repeated names are all ones where the parent has
+% multiple children. Prolog isn't super clever - it's just looking for all the
+% facts that match the above pattern, and returning the Y in each case. So
+% because there are multiple facts that match parent(mildred, _), mildred
+% appears multiple times in the set of answers.
 
 
 % ~~~ Task 3: ~~~
@@ -91,6 +117,10 @@ parent(mildred, bob).
 
 %%% Task 3 solution %%%
 
+grandparent(Grandparent, Grandchild) :-
+  parent(Grandparent, Someone),
+  parent(Someone, Grandchild).
+
 %%% Task 3 solution %%%
 
 
@@ -101,6 +131,12 @@ parent(mildred, bob).
 % 1. who is mildred a grandparent of?
 % 2. who are bob's grandparents?
 % 3. who are all of the grandparents in the family tree?
+%
+% Answers:
+%
+% 1. grandparent(mildred, X).
+% 2. grandparent(X, bob).
+% 3. grandparent(X, _).
 
 
 % ~~~ Task 5: ~~~
@@ -114,6 +150,11 @@ parent(mildred, bob).
 
 %%% Task 5 solution %%%
 
+sibling(X, Y) :-
+  parent(Z, X),
+  parent(Z, Y),
+  X \== Y.
+
 %%% Task 5 solution %%%
 
 
@@ -126,3 +167,36 @@ parent(mildred, bob).
 %
 % Do you see duplicates in the answer to 2? What do you think the reason for
 % this is?
+%
+% Answers:
+%
+% 1. sibling(ted, X).
+% 2. sibling(X, Y).
+%
+% We see even more duplicates in the sibling(X, Y) query. For example, we get
+% the pair (jo, bob) twice, and (bob, jo) twice, too.
+%
+% The rule we wrote can be satisfied in lots of ways:
+%
+% sibling(X, Y) :-
+%   parent(Z, X), % parent(mildred, bob)
+%   parent(Z, Y), % parent(mildred, jo)
+%
+% sibling(X, Y) :-
+%   parent(Z, X), % parent(mildred, jo)
+%   parent(Z, Y), % parent(mildred, bob)
+%   X \== Y.   X \== Y.
+%
+% sibling(X, Y) :-
+%   parent(Z, X), % parent(horace, bob)
+%   parent(Z, Y), % parent(horace, jo)
+%
+% sibling(X, Y) :-
+%   parent(Z, X), % parent(horace, jo)
+%   parent(Z, Y), % parent(horace, bob)
+%   X \== Y.   X \== Y.
+%
+% Each time we press ; to get another answer, Prolog backtracks and eventually
+% finds all of these solutions, which is why we get duplicates. They're not
+% wrong - they're all just different, valid ways of proving that jo is bob's
+% sibling.
