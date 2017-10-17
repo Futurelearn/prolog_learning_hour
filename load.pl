@@ -1,6 +1,6 @@
 :- style_check(-discontiguous).
 
-?- [src/facts_rules_and_variables, src/genealogy, src/peano].
+?- [src/facts_rules_and_queries, src/genealogy, src/peano].
 
 % vim: set ft=prolog:
 
