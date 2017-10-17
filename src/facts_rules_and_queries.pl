@@ -156,10 +156,6 @@ likes(simon, X) :- cheese(X).
 %
 %%% Task 4 solution %%%
 
-city(london).
-city(geneva).
-likes(audrey, X) :- city(X).
-
 %%% Task 4 solution %%%
 %
 % At the console, reload the program and write queries to answer the following
